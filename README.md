@@ -67,7 +67,7 @@ For more information please check JPV official npm repository
 ### Implementation
 
 
-***Kafka implementation
+Kafka implementation
 
 ```javascript
 
