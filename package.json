@@ -1,0 +1,14 @@
+{
+  "name": "express-message",
+  "version": "1.0.0",
+  "description": "Queue based async message routing library",
+  "author": "Manvel Khnkoyan",
+  "license": "ISC",
+  "main": "src/index.js",
+  "dependencies": {
+    "jpv": "^2.0"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  }
+}
