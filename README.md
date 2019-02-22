@@ -83,16 +83,16 @@ module.exports = customHandler;
 
 express-message uses  [jpv](url=https://www.npmjs.com/package/jpv/) as a matcher.
 
-Here are some examples.
-Regular Expression  ``` app.handle( { jsonrpc : /[12]+\.[\d]/ } ```
-Native Types ``` { jsonrpc : "2.0", params : "(object)", timestamp : "(number))" } ```
-Custom Types ``` { jsonrpc : [float], email : "[email]",  } ```
-Logical negation : ``` { jsonrpc : !(boolean) } ```
+Here are some examples.  
+Regular Expression  ``` app.handle( { jsonrpc : /[12]+\.[\d]/ } ```  
+Native Types ``` { jsonrpc : "2.0", params : "(object)", timestamp : "(number))" } ```  
+Custom Types ``` { jsonrpc : [float], email : "[email]",  } ```  
+Logical negation : ``` { jsonrpc : !(boolean) } ```  
 
 For more information please check JPV official npm repository
 
 
-### Implementation
+### Queue Integration
 
 
 Kafka implementation
