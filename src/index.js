@@ -6,41 +6,31 @@
 
 'use strict';
 
-/*
- * Json pattern Validator
- */
 const jpv = require('jpv');
+const Handler = require('./handler');
 
-
-/*
-*
-* */
-
-module.exports = class expressMessage {
-
+class App extends Handler {
     /*
     *
     * */
     constructor() {
-        /*
-         * List of handlers
-         */
-        this.handlers = [];
+        super()
     }
 
     /*
     *
     * */
-    async handle( pattern, func ) {
-        this.handlers.push({pattern,func});
-    }
-
-    /*
-    *
-    * */
-    async emit(message) {
-        for (var i = 0; i < this.handlers.length; i++) {
-            let {pattern, func} = this.handlers[i];
+    async emit(message, argHandlers = null) {
+        let handlers = argHandlers || this.handlers;
+        for (var i = 0; i < handlers.length; i++) {
+            let {pattern, func} = handlers[i];
+            if( func instanceof Handler ){
+                let result = this.emit(message, func.handlers);
+                if( !result ){
+                    break;
+                }
+                continue;
+            }
             if (jpv.validate(message, pattern)) {
                 let error = await func(message);
                 if (error) {
@@ -48,9 +38,17 @@ module.exports = class expressMessage {
                 }
             }
         }
-    }
 
+        return true;
+    }
+}
+
+exports = module.exports =  function () {
+  return new App();
 };
 
+exports.Handler = function () {
+    return new Handler();
+};
 
 

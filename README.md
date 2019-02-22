@@ -19,8 +19,8 @@ $ npm install express-message --save
 
 ```javascript
 
-const expressMessage = require('express-message');
-const app = new expressMessage();
+const app = require('express-message')();
+
 
 /* Validate */
 app.handle( {}, async (message) => {
@@ -51,14 +51,42 @@ setTimeout(() => {
 
 ```
 
+
+### Handler
+
+For a complex project you can use separate handler and then use it in main app.
+
+```javascript
+// ***
+// main.js
+const app = require('express-message')();
+const customHandler = require("./customHandler");
+
+app.use( customHandler );
+// or this is also correct app.use({}, customHandler);
+
+
+// ***
+// customHandler.js
+const customHandler = require('../../express-message').Handler();
+customHandler.handle( { method : "MY_METHOD" }, async (message) => {
+    // do somthing
+});
+
+module.exports = customHandler;
+
+```
+
+
+
 ### Matching
 
 express-message uses  [jpv](url=https://www.npmjs.com/package/jpv/) as a matcher.
 
-Here are some examples.  
-Regular Expression  ``` app.handle( { jsonrpc : /[12]+\.[\d]/ } ```  
-Native Types ``` { jsonrpc : "2.0", params : "(object)", timestamp : "(number))" } ```    
-Custom Types ``` { jsonrpc : [float], email : "[email]",  } ```  
+Here are some examples.
+Regular Expression  ``` app.handle( { jsonrpc : /[12]+\.[\d]/ } ```
+Native Types ``` { jsonrpc : "2.0", params : "(object)", timestamp : "(number))" } ```
+Custom Types ``` { jsonrpc : [float], email : "[email]",  } ```
 Logical negation : ``` { jsonrpc : !(boolean) } ```
 
 For more information please check JPV official npm repository
@@ -71,17 +99,16 @@ Kafka implementation
 
 ```javascript
 
-const expressMessage = require('express-message');
-const app = new expressMessage();
+const app = require('express-message')();
 
 // here are your hendlers
 app.handle( { method : "add" }, async (message) => {
-     /// 
+     ///
 });
 
-// ... 
+// ...
 
-// your kafka consumer 
+// your kafka consumer
 consumer.on('message', function (message) {
     app.emit(message);
 });
@@ -92,15 +119,14 @@ Redis implementation
 
 ```javascript
 
-const expressMessage = require('express-message');
-const app = new expressMessage();
+const app = require('express-message')();
 
 // here are your hendlers
 app.handle( { method : "add" }, async (message) => {
-     /// 
+     ///
 });
 
-// ... 
+// ...
 
 // your redis subscriber
 subscriber.on("message", function (channel, message) {
@@ -109,7 +135,7 @@ subscriber.on("message", function (channel, message) {
 
 ```
 
- 
+
 
 
 
