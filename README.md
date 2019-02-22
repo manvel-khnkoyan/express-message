@@ -8,7 +8,7 @@ Queue based async message routing library
 
 ## Install
 
-Stable Release (`1.0.x`)
+Stable Release (`1.1.x`)
 
 ```sh
 $ npm install express-message --save
@@ -68,7 +68,7 @@ app.use( customHandler );
 
 // ***
 // customHandler.js
-const customHandler = require('../../express-message').Handler();
+const customHandler = require('express-message').Handler();
 customHandler.handle( { method : "MY_METHOD" }, async (message) => {
     // do somthing
 });

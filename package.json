@@ -1,6 +1,6 @@
 {
   "name": "express-message",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Queue based async message routing library",
   "keywords": [
     "router",
