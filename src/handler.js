@@ -18,12 +18,13 @@ module.exports = class Handler {
     /*
     *
     * */
-    async handle( arg1, arg2 ) {
-        let pattern = arg1;
-        let func = arg2;
-        if(typeof arg1 === 'function' ){
+    async handle( ) {
+        let pattern = arguments[0];
+        let func = arguments[1];
+
+        if( arguments.length == 1 ){
             pattern = {};
-            func = arg1;
+            func = arguments[0];
         }
         if( func.constructor.name !== 'AsyncFunction' && !(func instanceof Handler) ){
             throw 'Use a async function as a handler or express-message handler in: ' +  func.toString() +

@@ -21,7 +21,7 @@ const customHandler = require('../../express-message').Handler();
 customHandler.handle( { method : "subtract" }, async (message) => {
     message.result = message.params[0] - message.params[1];
 });
-app.handle({ method : "subtract" }, customHandler);
+app.handle( {}, customHandler);
 
 
 /**/
