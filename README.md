@@ -8,7 +8,7 @@ Queue based async message routing library
 
 ## Install
 
-Stable Release (`1.1.x`)
+Stable Release (`1.2.x`)
 
 ```sh
 $ npm install express-message --save
