@@ -39,8 +39,8 @@ const messages = [
 
 
 
-messages.forEach( message => {
-    app.emit(message)
+messages.forEach( async message => {
+    await app.emit(message)
 });
 
 // because of library calls asynchronously
