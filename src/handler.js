@@ -25,6 +25,10 @@ module.exports = class Handler {
             pattern = {};
             func = arg1;
         }
+        if( func.constructor.name !== 'AsyncFunction' && !(func instanceof Handler) ){
+            throw 'Use a async function as a handler or express-message handler in: ' +  func.toString() +
+                "\n" + 'See more information from https://www.npmjs.com/package/express-message';
+        }
         this.handlers.push({ pattern, func });
     }
 };

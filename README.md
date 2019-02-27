@@ -40,8 +40,8 @@ const messages = [
     {"jsonrpc": "2.0", "method": "add", "params": [18, 8]}
 ];
 
-messages.forEach( message => {
-    app.emit(message)
+messages.forEach( async message => {
+    await app.emit(message)
 });
 
 // because of library works asynchronously
@@ -109,8 +109,8 @@ app.handle( { method : "add" }, async (message) => {
 // ...
 
 // your kafka consumer
-consumer.on('message', function (message) {
-    app.emit(message);
+consumer.on('message', async function (message) {
+    await app.emit(message);
 });
 
 ```
@@ -129,8 +129,8 @@ app.handle( { method : "add" }, async (message) => {
 // ...
 
 // your redis subscriber
-subscriber.on("message", function (channel, message) {
-    app.emit(message);
+subscriber.on("message", async function (channel, message) {
+    await app.emit(message);
 });
 
 ```

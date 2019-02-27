@@ -25,7 +25,7 @@ class App extends Handler {
         for (var i = 0; i < handlers.length; i++) {
             let {pattern, func} = handlers[i];
             if( func instanceof Handler ){
-                let result = this.emit(message, func.handlers);
+                let result = await this.emit(message, func.handlers);
                 if( !result ){
                     break;
                 }
