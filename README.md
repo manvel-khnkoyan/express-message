@@ -54,7 +54,7 @@ setTimeout(() => {
 
 ### Handler
 
-For a complex project you can use separate handler and then use it in main app.
+For a complex project you can create separate handlers then use them from app.
 
 ```javascript
 // ***
@@ -62,8 +62,8 @@ For a complex project you can use separate handler and then use it in main app.
 const app = require('express-message')();
 const customHandler = require("./customHandler");
 
-app.use( customHandler );
-// or this is also correct app.use({}, customHandler);
+app.handle( customHandler );
+// or this is also correct app.handle({}, customHandler);
 
 
 // ***
